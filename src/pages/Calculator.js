@@ -8,16 +8,25 @@ import Grid from "@mui/material/Grid";
 const Calculator = () => {
   const [input, setInput] = useState("");
 
+  const handleInput = (e) => {
+    const allowKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/"];
+
+    if (allowKeys.indexOf(e.nativeEvent.data) === -1) e.preventDefault();
+    else setInput(input + e.nativeEvent.data);
+    console.log(input);
+  };
+
   const handleNumClicked = (e) => {
     // console.log(e.target.innerText);
     setInput(input + e.target.innerText);
   };
+
   console.log(input);
   return (
     <PageLayout>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Input onInput={(e) => setInput(e.target.value)}></Input>
+          <Input onInput={handleInput} value={input} autoFocus></Input>
         </Grid>
         {/*  */}
         <StyledBtnWrapper item xs={3}>
@@ -94,7 +103,13 @@ const Input = styled.input`
   height: 40px;
   font-size: 1.6rem;
   text-align: right;
-  /* background-color: red; */
+  border-radius: 12px;
+  &:focus {
+    caret-color: transparent; /* 깜박임 제거 */
+    outline: 0;
+    border: 3px solid #042d69;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 `;
 
 const StyledBtnWrapper = styled(Grid)`
