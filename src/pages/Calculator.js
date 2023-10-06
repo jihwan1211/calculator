@@ -21,6 +21,9 @@ const Calculator = () => {
     setInput(input + e.target.innerText);
   };
 
+  const handleResetBtn = () => {
+    setInput("");
+  };
   console.log(input);
   return (
     <PageLayout>
@@ -30,7 +33,7 @@ const Calculator = () => {
         </Grid>
         {/*  */}
         <StyledBtnWrapper item xs={3}>
-          <StyledBtn>CE</StyledBtn>
+          <StyledBtn onClick={handleResetBtn}>CE</StyledBtn>
         </StyledBtnWrapper>
         <StyledBtnWrapper item xs={3}>
           <StyledBtn>{"("}</StyledBtn>
